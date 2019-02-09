@@ -51,13 +51,12 @@ public class GitAdapter extends RecyclerView.Adapter<GitAdapter.GitHolder> {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(ctx,DetailActivity.class);
-                i.putExtra("search" , current.getFollowers());
+                i.putExtra("search" , current);
 
                 Log.e("TAG", "Adapter: "+current.getScore()  );
                 ctx.startActivity(i);
             }
         });
-
     }
 
     @Override

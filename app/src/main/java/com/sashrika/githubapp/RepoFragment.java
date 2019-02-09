@@ -40,7 +40,7 @@ public class RepoFragment extends Fragment {
         rvfrag = view.findViewById(R.id.reporv);
 
         NetworkTask networkTask = new NetworkTask();
-        networkTask.execute();
+        networkTask.execute("https://api.github.com/users/ygm125/repos");
     }
 
         class NetworkTask extends AsyncTask<String, Void, ArrayList<RepoGitUser>> {
@@ -49,6 +49,7 @@ public class RepoFragment extends Fragment {
             @Override
             protected ArrayList<RepoGitUser> doInBackground(String... strings) {
                 String url = strings[0];
+                Log.e("TAG",url);
                 String result = makeNetworkCall(url);
                 users = parseJson(result);
                 //Make the network request

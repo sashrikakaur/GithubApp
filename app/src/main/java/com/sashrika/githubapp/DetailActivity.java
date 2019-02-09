@@ -18,18 +18,20 @@ public class DetailActivity extends AppCompatActivity{
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ImageView img = findViewById(R.id.imgnext);
         setContentView(R.layout.activity_detail);
+        ImageView img = findViewById(R.id.imgnext);
         Intent i = getIntent();
         Log.e("TAG", "Detail: "+i.getData());
-        GitHubUser gitHubUser = (GitHubUser) i.getSerializableExtra("search");
+        GitHubUser gitHubUser = i.getExtras().getParcelable("search");
         Picasso.get().load(gitHubUser.getImageUrl()).into(img);
         ViewPager viewPager = findViewById(R.id.view);
-
+        //send a bundle to all three fragments
         ArrayList<Fragment> fragments = new ArrayList<>();
         fragments.add(new AboutFragment());
         fragments.add(new RepoFragment());
         fragments.add(new FollowerFragment());
+
+
 //        getSupportFragmentManager().beginTransaction().replace(R.id.container,new Fragment()).commit();
 
         PagerAdapter pagerAdapter = new PagerAdapter(getSupportFragmentManager(),fragments);
